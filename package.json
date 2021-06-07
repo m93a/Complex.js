@@ -1,9 +1,9 @@
 {
-    "name": "complex.js",
+    "name": "@m93a/complex.js",
     "homepage": "https://github.com/infusion/Complex.js",
     "bugs": "https://github.com/infusion/Complex.js/issues",
     "title": "complex.js",
-    "version": "2.0.13",
+    "version": "0.0.1",
     "description": "A complex number library",
     "keywords": [
         "complex numbers",
