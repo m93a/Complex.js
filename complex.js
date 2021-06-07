@@ -299,10 +299,58 @@
     this['im'] = z['im'];
   }
 
+  const ComplexArithmetics = {
+    [Symbol.for('arithmetics-additive-group')]: true,
+    [Symbol.for('arithmetics-ring')]: true,
+    [Symbol.for('arithmetics-division-ring')]: true,
+    [Symbol.for('arithmetics-vector-space')]: true,
+    [Symbol.for('arithmetics-normed-vector-space')]: true,
+    [Symbol.for('arithmetics-normed-division-ring')]: true,
+
+    isCommutative: true,
+
+    zero() { return Complex.ZERO.clone() },
+    one() { return Complex.ONE.clone() },
+    epsilon() { return new Complex(Complex.EPSILON) },
+
+    fromNumber(a) { return new Complex(a); },
+    fromReal(a) { return new Complex(a); },
+
+    real(z) { return z.re; },
+    imag(z) { return new Complex(0, z.im); },
+
+    conj(z) { return z.conjugate(); },
+    neg(z) { return z.neg(); },
+    inv(z) { return z.inverse(); },
+
+    add(z, w) { return z.add(w); },
+    sub(z, w) { return z.sub(w); },
+    mul(z, w) { return z.mul(w); },
+    div(z, w) { return z.div(w); },
+
+    pow(z, w) { return z.pow(w); },
+    exp(z) { return z.exp(); },
+    expm1(z) { return z.expm1(); },
+
+    normSq({re, im}) { return re * re + im * im; },
+    norm(z) { return z.abs() },
+    scale(z, s) { return z.mul(s); },
+
+    isNaN(z) { return z.isNaN(); },
+    isFinite(z) { return z.isFinite(); },
+    equals(z, w) { return z.equals(w); },
+
+    approximatelyEquals(z, w, epsilon) {
+        return z.sub(w).abs() < epsilon
+    }
+  }
+
   Complex.prototype = {
 
     're': 0,
     'im': 0,
+
+    [Symbol.for('arithmetics')]: ComplexArithmetics,
 
     /**
      * Calculates the sign of a complex number, which is a normalized complex
