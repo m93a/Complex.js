@@ -331,6 +331,8 @@
     pow(z, w) { return z.pow(w); },
     exp(z) { return z.exp(); },
     expm1(z) { return z.expm1(); },
+    log(z) { return z.log() },
+    log1p(z) { return z.add(1).log() },
 
     normSq({re, im}) { return re * re + im * im; },
     norm(z) { return z.abs() },
